@@ -1,7 +1,7 @@
 # Actix Default Responder
 
 
-[![CI](https://github.com/jsam/actix-default-responder/workflows/CI/badge.svg)](https://github.com/jsam/actix-default-responder)
+[![Check Commit](https://github.com/jsam/actix-default-responder/actions/workflows/check-commit.yml/badge.svg)](https://github.com/jsam/actix-default-responder/actions/workflows/check-commit.yml)
 [![](https://img.shields.io/crates/v/actix-default-responder.svg)](https://crates.io/crates/actix-default-responder)
 [![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
