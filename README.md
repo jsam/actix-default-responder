@@ -2,7 +2,7 @@
 
 
 [![CI](https://github.com/jsam/actix-default-responder/workflows/CI/badge.svg)](https://github.com/jsam/actix-default-responder)
-[![](https://img.shields.io/crates/v/bincode.svg)](https://crates.io/crates/actix-default-responder)
+[![](https://img.shields.io/crates/v/actix-default-responder.svg)](https://crates.io/crates/actix-default-responder)
 [![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Procedural macros for generating default `actix_web::Responder` implementation for a custom serialization.

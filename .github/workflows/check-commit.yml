@@ -1,0 +1,77 @@
+name: Check Commit
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+concurrency:
+  group: check-commit-${{ github.event.repository.name }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-commit:
+    if: github.event.pull_request.merge == false
+    runs-on: self-hosted
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain:
+          - x86_64-unknown-linux-gnu
+        version:
+          - stable
+          - nightly
+        include:
+          - toolchain: x86_64-unknown-linux-gnu
+            # os: ubuntu-latest
+
+
+    name: ${{ matrix.version }} - ${{ matrix.toolchain }}
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+
+      - name: Install ${{ matrix.version }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.version }}-${{ matrix.toolchain }}
+          default: true
+
+      - name: Run check
+        uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --all --bins --examples --tests
+
+  check_components:
+    if: github.event.pull_request.merged == false
+    runs-on: self-hosted
+    name: Check Components
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+
+      - name: Setup
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true
+          components: rustfmt,clippy
+
+      - name: fmt
+        run: cargo fmt --all -- --check
+
+      - name: clippy
+        run: cargo clippy
+
+      - name: doc
+        run: cargo doc
