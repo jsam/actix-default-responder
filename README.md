@@ -3,9 +3,12 @@
 Procedural macros for generating default `actix_web::Responder` implementation for a custom serialization.
 
 Currently supported formats are:
-    * JSON
-    * Bincode
-    * XML
+
+    1. JSON
+
+    2. Bincode
+
+    3. XML
 
 
 ## Json Response
