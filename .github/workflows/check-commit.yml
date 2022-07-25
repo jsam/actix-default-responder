@@ -50,7 +50,7 @@ jobs:
 
   check_components:
     if: github.event.pull_request.merged == false
-    runs-on: self-hosted
+    # runs-on: self-hosted
     name: Check Components
     steps:
       - uses: actions/checkout@master
