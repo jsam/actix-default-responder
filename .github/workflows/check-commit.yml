@@ -14,6 +14,7 @@ jobs:
   check-commit:
     if: github.event.pull_request.merge == false
     # runs-on: self-hosted
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -51,6 +52,7 @@ jobs:
   check_components:
     if: github.event.pull_request.merged == false
     # runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: Check Components
     steps:
       - uses: actions/checkout@master
