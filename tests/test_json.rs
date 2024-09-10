@@ -47,7 +47,11 @@ async fn xml_responder() {
     let res: HttpResponse = test_value.respond_to(&req);
     let res = to_bytes(res.into_body()).await.unwrap();
 
-    assert_eq!(res, &b"<XMLResponse><name>Test</name></XMLResponse>"[..]);
+    assert_eq!(
+        res,
+        &b"<?xml version=\"1.0\" encoding=\"UTF-8\"?><XMLResponse><name>Test</name></XMLResponse>"
+            [..]
+    );
 }
 
 #[actix_web::test]
